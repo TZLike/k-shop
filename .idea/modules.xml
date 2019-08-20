@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/k-shop-common/k-shop-common.iml" filepath="$PROJECT_DIR$/k-shop-common/k-shop-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/k-shop-eureka-server/k-shop-eureka-server.iml" filepath="$PROJECT_DIR$/k-shop-eureka-server/k-shop-eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/k-shop-web/k-shop-web.iml" filepath="$PROJECT_DIR$/k-shop-web/k-shop-web.iml" />
+    </modules>
+  </component>
+</project>

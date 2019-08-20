@@ -1,0 +1,8 @@
+com/huatech/shop/common/exception/ExceptionCustomer.class
+com/huatech/shop/common/base/IBaseMapper.class
+com/huatech/shop/common/constants/ApiConstants.class
+com/huatech/shop/common/base/BaseEntity.class
+com/huatech/shop/common/base/IBaseService.class
+com/huatech/shop/common/result/ResponseResult.class
+com/huatech/shop/common/base/impl/BaseServiceImpl.class
+com/huatech/shop/common/result/PageQuery.class

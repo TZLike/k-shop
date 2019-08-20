@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatech.shop.module.role.mapper.RoleMapperCustomer">
+
+    <resultMap id="BaseResultMap" type="com.huatech.shop.module.resource.entity.Resource">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="is_hide" property="isHide" jdbcType="INTEGER"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="source_key" property="sourceKey" jdbcType="VARCHAR"/>
+        <result column="source_url" property="sourceUrl" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="BaseRoleMap" type="com.huatech.shop.module.role.entity.Role">
+        <id column="rid" property="rid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="role_key" property="roleKey" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <collection property="resources"
+                    resultMap="BaseResultMap"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        rid, create_time, description, name, role_key, status, update_time
+    </sql>
+
+    <!--根据roleId自定义查询Role-->
+    <select id="findRoleById" parameterType="integer" resultMap="BaseRoleMap">
+        select
+        r.rid,r.name,r.role_key,r.update_time,tr.*
+        from t_role r
+        INNER JOIN t_role_resource rrs
+        on r.rid = rrs.role_id
+        INNER join t_resource tr
+        on tr.id = rrs.resource_id
+        <where>
+            r.rid = #{roleId}
+        </where>
+
+    </select>
+
+    <!--    查看角色是否已经存在-->
+    <select id="findRoleByName" parameterType="java.lang.String" resultMap="BaseRoleMap">
+
+        select
+        <include refid="Base_Column_List"/>
+        from t_role
+        <where>
+            name = #{name}
+        </where>
+
+    </select>
+
+
+</mapper>

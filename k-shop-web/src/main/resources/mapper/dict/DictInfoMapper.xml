@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatech.shop.module.dict.mapper.DictInfoMapper">
+    <resultMap id="BaseResultMap" type="com.huatech.shop.module.dict.entity.DictInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="dict_code" property="dictCode" jdbcType="VARCHAR"/>
+        <result column="info" property="info" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="type_code" property="typeCode" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--    根据typeCode查询字典明细-->
+    <select id="findDictInfoByDictCode" parameterType="java.lang.String"
+            resultType="com.huatech.shop.module.dict.dto.DictInfoDTO">
+        select info.id,t.type_name typeName,info.info,info.remark,info.dict_code dictCode
+        from t_dict_type t ,t_dict_info info
+        <where>
+            t.type_code = info.type_code
+            and t.type_code = #{typeCode}
+        </where>
+
+    </select>
+
+    <select id="findDictInfoByTypeCodeAndDictCode" resultMap="BaseResultMap"
+            parameterType="com.huatech.shop.module.dict.entity.DictInfo">
+
+        select *from t_dict_info
+        <where>
+
+            <if test="typeCode != null and typeCode !=''">
+
+                type_code = #{typeCode}
+
+            </if>
+
+            <if test="dictCode != null and dictCode !=''">
+
+                and dict_code = #{dictCode}
+            </if>
+
+        </where>
+    </select>
+
+    <delete id="deleteInfoByTypeCode" parameterType="java.lang.String">
+
+        delete from t_dict_info
+        <where>
+            type_code = #{typeCode}
+        </where>
+
+    </delete>
+
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatech.shop.module.resource.mapper.ResourceMapper">
+    <resultMap id="BaseResultMap" type="com.huatech.shop.module.resource.entity.Resource">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="is_hide" property="isHide" jdbcType="INTEGER"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="source_key" property="sourceKey" jdbcType="VARCHAR"/>
+        <result column="source_url" property="sourceUrl" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, create_time, description, is_hide, level, name, sort, source_key, source_url,
+    type, update_time, parent_id
+  </sql>
+
+    <!--根据角色id来查询当下角色下有多少资源-->
+    <select id="findResourcesByRoleId" parameterType="integer" resultMap="BaseResultMap">
+        select trs.*
+        from t_role r
+        INNER JOIN t_role_resource trr
+        ON r.rid = trr.role_id
+        INNER JOIN t_resource trs
+        ON trr.resource_id = trs.id
+        <where>
+            r.rid = #{rid}
+        </where>
+
+    </select>
+
+    <!--    删除角色和资源对应关系-->
+    <delete id="deleteRoleAndResourceById" parameterType="java.lang.Integer">
+
+        delete from t_role_resource
+        <where>
+            resource_id = #{id}
+        </where>
+
+    </delete>
+
+    <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+
+        select
+        <include refid="Base_Column_List"/>
+        from t_resource
+        <where>
+            parent_id = #{reourceId}
+        </where>
+
+    </select>
+
+</mapper>
