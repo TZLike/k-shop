@@ -28,16 +28,16 @@ spring:
     settings.datetime_format: yyyy-MM-dd HH:mm:ss
     #数据库druid相关配置
   druid:
-      driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/k-shop?characterEncoding=utf-8
-      username: root
-      password: 123456
-      maxActive: 30 #最大连接数
-      minIdle: 5    #最小连接数
-      maxWait: 10000  #获取连接的最大等待时间
-      validationQuery: select 'x'   #解决mysql8小时的问题
-      timeBetweenEvicationRunsMills: 600000  #空闲连接检查时间间隔
-      minEvictableIdleTimeMills: 300000    #空闲连接最小空闲时间
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/k-shop?characterEncoding=utf-8
+    username: root
+    password: 123456
+    maxActive: 30 #最大连接数
+    minIdle: 5    #最小连接数
+    maxWait: 10000  #获取连接的最大等待时间
+    validationQuery: select 'x'   #解决mysql8小时的问题
+    timeBetweenEvicationRunsMills: 600000  #空闲连接检查时间间隔
+    minEvictableIdleTimeMills: 300000    #空闲连接最小空闲时间
   #mybatis的配置&&通用Mapper配置
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
@@ -55,3 +55,13 @@ eureka:
     service-url:
       defaultZone: http://localhost:8100/eureka/
 
+# 配置FastDFS图片服务器
+fdfs:
+  soTimeout: 1500
+  connectTimeout: 600
+  resHost: 192.168.101.249
+  storagePort: 8888
+  trackerList[0]: 192.168.101.249:22122
+  thumbImage:
+    height: 150
+    width: 150

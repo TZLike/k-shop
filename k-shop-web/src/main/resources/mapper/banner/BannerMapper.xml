@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huatech.shop.module.banner.mapper.BannerMapper">
+    <resultMap id="BaseResultMap" type="com.huatech.shop.module.banner.entity.Banner">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="subtitle" jdbcType="VARCHAR" property="subtitle"/>
+        <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
+        <result column="position" jdbcType="CHAR" property="position"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="channel" jdbcType="CHAR" property="channel"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, name, subtitle, img_url, position, url, status, create_time, start_time, channel
+  </sql>
+
+    <select id="findBanners" parameterType="com.huatech.shop.module.banner.param.BannerParam"
+            resultType="com.huatech.shop.common.dto.BannerDto">
+        select b.id,b.name,b.subtitle,b.img_url imgUrl,b.status sInt,
+        (select info from t_dict_info where type_code = '11000' and dict_code = b.position)
+        position,b.url,(select info from t_dict_info where type_code = '60000' and dict_code = b.`status`) `status`,
+        (select info from t_dict_info where type_code = '12000' and dict_code = b.channel)channel,
+        b.create_time createTime,b.start_time startTime
+        from t_banner b
+        <where>
+            <if test="position!=null and position!=''">
+                b.position = #{position}
+            </if>
+            <if test="status !=null and status != ''">
+                and b.status = #{status}
+            </if>
+            <if test="channel !=null and channel != ''">
+                and b.channel = #{channel}
+            </if>
+
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

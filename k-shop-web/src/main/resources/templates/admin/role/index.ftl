@@ -114,14 +114,11 @@
                 title: "操作",
                 field: "empty",
                 formatter: function (value, row, index) {
-                    var operateHtml = '<button class="btn btn-primary btn-xs" type="button" onclick="edit(\'' + row.rid + '\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;';
-                    operateHtml = operateHtml + '<button class="btn btn-danger btn-xs" type="button" onclick="del(\'' + row.rid + '\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;';
-                    operateHtml = operateHtml + '<button class="btn btn-info btn-xs" type="button" onclick="grant(\'' + row.rid + '\')"><i class="fa fa-arrows"></i>&nbsp;分配资源</button>';
+
+                    var operateHtml = '<@shiro.hasPermission name="system:role:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.rid+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
+                    operateHtml = operateHtml + '<@shiro.hasPermission name="system:role:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.rid+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
+                    operateHtml = operateHtml + '<@shiro.hasPermission name="system:role:grant"><button class="btn btn-info btn-xs" type="button" onclick="grant(\''+row.rid+'\')"><i class="fa fa-arrows"></i>&nbsp;分配资源</button></@shiro.hasPermission>';
                     return operateHtml;
-                    <#--var operateHtml = '<@shiro.hasPermission name="system:role:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.rid+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';-->
-                    <#--operateHtml = operateHtml + '<@shiro.hasPermission name="system:role:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.rid+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';-->
-                    <#--operateHtml = operateHtml + '<@shiro.hasPermission name="system:role:grant"><button class="btn btn-info btn-xs" type="button" onclick="grant(\''+row.rid+'\')"><i class="fa fa-arrows"></i>&nbsp;分配资源</button></@shiro.hasPermission>';-->
-                    <#--return operateHtml;-->
                 }
             }]
         });

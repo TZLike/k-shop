@@ -41,4 +41,14 @@ public class ShopConstants extends ApiConstants {
 
     }
 
+    /**
+     * Banner相关
+     */
+    public static class Banner {
+        public static final String BANNER_POSITION = "11000";
+        public static final String BANNER_CHANNEL = "12000";
+        public static final String BANNER_STATUS = "60000";
+    }
+
+
 }

@@ -142,14 +142,11 @@
                     title: "操作",
                     field: "empty",
                     formatter: function (value, row, index) {
-                        <#--var operateHtml = '<@shiro.hasPermission name="system:user:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+ row.uid+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';-->
-                        <#--operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+ row.uid+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';-->
-                        <#--operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:grant"><button class="btn btn-info btn-xs" type="button" onclick="grant(\''+ row.userName+'\')"><i class="fa fa-arrows"></i>&nbsp;关联角色</button></@shiro.hasPermission>';-->
-                        <#--return operateHtml;-->
-                        var operateHtml = '<button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+ row.uid+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;';
-                        operateHtml = operateHtml + '<button class="btn btn-danger btn-xs" type="button" onclick="del(\''+ row.uid+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;';
-                        operateHtml = operateHtml + '<button class="btn btn-info btn-xs" type="button" onclick="grant(\''+ row.userName+'\')"><i class="fa fa-arrows"></i>&nbsp;关联角色</button>';
+                        var operateHtml = '<@shiro.hasPermission name="system:user:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+ row.uid+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+ row.uid+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:grant"><button class="btn btn-info btn-xs" type="button" onclick="grant(\''+ row.userName+'\')"><i class="fa fa-arrows"></i>&nbsp;关联角色</button></@shiro.hasPermission>';
                         return operateHtml;
+
                     }
                 }]
             });

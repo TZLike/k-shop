@@ -17,114 +17,137 @@
     <link href="${ctx!}/hadmin/css/animate.css" rel="stylesheet">
     <link href="${ctx!}/hadmin/css/style.css?v=4.1.0" rel="stylesheet">
 
-<style type="text/css">
+    <style type="text/css">
 
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-        vertical-align: middle;
-    }
-    .btn-file > input {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        font-size: 23px;
-        cursor: pointer;
-        filter: alpha(opacity=0);
-        opacity: 0;
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+            vertical-align: middle;
+        }
 
-        direction: ltr;
-    }
-    .fileinput {
-        display: inline-block;
-        margin-bottom: 9px;
-    }
-    .fileinput .form-control {
-        display: inline-block;
-        padding-top: 7px;
-        padding-bottom: 5px;
-        margin-bottom: 0;
-        vertical-align: middle;
-        cursor: text;
-    }
-    .fileinput .thumbnail {
-        display: inline-block;
-        margin-bottom: 5px;
-        overflow: hidden;
-        text-align: center;
-        vertical-align: middle;
-    }
-    .fileinput .thumbnail > img {
-        max-height: 100%;
-    }
-    .fileinput .btn {
-        vertical-align: middle;
-    }
-    .fileinput-exists .fileinput-new,
-    .fileinput-new .fileinput-exists {
-        display: none;
-    }
-    .fileinput-inline .fileinput-controls {
-        display: inline;
-    }
-    .fileinput-filename {
-        display: inline-block;
-        overflow: hidden;
-        vertical-align: middle;
-    }
-    .form-control .fileinput-filename {
-        vertical-align: bottom;
-    }
-    .fileinput.input-group {
-        display: table;
-    }
-    .fileinput.input-group > * {
-        position: relative;
-        z-index: 2;
-    }
-    .fileinput.input-group > .btn-file {
-        z-index: 1;
-    }
-    .fileinput-new.input-group .btn-file,
-    .fileinput-new .input-group .btn-file {
-        border-radius: 0 4px 4px 0;
-    }
-    .fileinput-new.input-group .btn-file.btn-xs,
-    .fileinput-new .input-group .btn-file.btn-xs,
-    .fileinput-new.input-group .btn-file.btn-sm,
-    .fileinput-new .input-group .btn-file.btn-sm {
-        border-radius: 0 3px 3px 0;
-    }
-    .fileinput-new.input-group .btn-file.btn-lg,
-    .fileinput-new .input-group .btn-file.btn-lg {
-        border-radius: 0 6px 6px 0;
-    }
-    .form-group.has-warning .fileinput .fileinput-preview {
-        color: #8a6d3b;
-    }
-    .form-group.has-warning .fileinput .thumbnail {
-        border-color: #faebcc;
-    }
-    .form-group.has-error .fileinput .fileinput-preview {
-        color: #a94442;
-    }
-    .form-group.has-error .fileinput .thumbnail {
-        border-color: #ebccd1;
-    }
-    .form-group.has-success .fileinput .fileinput-preview {
-        color: #3c763d;
-    }
-    .form-group.has-success .fileinput .thumbnail {
-        border-color: #d6e9c6;
-    }
-    .input-group-addon:not(:first-child) {
-        border-left: 0;
-    }
+        .btn-file > input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-size: 23px;
+            cursor: pointer;
+            filter: alpha(opacity=0);
+            opacity: 0;
 
-</style>
+            direction: ltr;
+        }
+
+        .fileinput {
+            display: inline-block;
+            margin-bottom: 9px;
+        }
+
+        .fileinput .form-control {
+            display: inline-block;
+            padding-top: 7px;
+            padding-bottom: 5px;
+            margin-bottom: 0;
+            vertical-align: middle;
+            cursor: text;
+        }
+
+        .fileinput .thumbnail {
+            display: inline-block;
+            margin-bottom: 5px;
+            overflow: hidden;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .fileinput .thumbnail > img {
+            max-height: 100%;
+        }
+
+        .fileinput .btn {
+            vertical-align: middle;
+        }
+
+        .fileinput-exists .fileinput-new,
+        .fileinput-new .fileinput-exists {
+            display: none;
+        }
+
+        .fileinput-inline .fileinput-controls {
+            display: inline;
+        }
+
+        .fileinput-filename {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+
+        .form-control .fileinput-filename {
+            vertical-align: bottom;
+        }
+
+        .fileinput.input-group {
+            display: table;
+        }
+
+        .fileinput.input-group > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .fileinput.input-group > .btn-file {
+            z-index: 1;
+        }
+
+        .fileinput-new.input-group .btn-file,
+        .fileinput-new .input-group .btn-file {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .fileinput-new.input-group .btn-file.btn-xs,
+        .fileinput-new .input-group .btn-file.btn-xs,
+        .fileinput-new.input-group .btn-file.btn-sm,
+        .fileinput-new .input-group .btn-file.btn-sm {
+            border-radius: 0 3px 3px 0;
+        }
+
+        .fileinput-new.input-group .btn-file.btn-lg,
+        .fileinput-new .input-group .btn-file.btn-lg {
+            border-radius: 0 6px 6px 0;
+        }
+
+        .form-group.has-warning .fileinput .fileinput-preview {
+            color: #8a6d3b;
+        }
+
+        .form-group.has-warning .fileinput .thumbnail {
+            border-color: #faebcc;
+        }
+
+        .form-group.has-error .fileinput .fileinput-preview {
+            color: #a94442;
+        }
+
+        .form-group.has-error .fileinput .thumbnail {
+            border-color: #ebccd1;
+        }
+
+        .form-group.has-success .fileinput .fileinput-preview {
+            color: #3c763d;
+        }
+
+        .form-group.has-success .fileinput .thumbnail {
+            border-color: #d6e9c6;
+        }
+
+        .input-group-addon:not(:first-child) {
+            border-left: 0;
+        }
+
+    </style>
 </head>
 
 <body class="gray-bg">
@@ -140,41 +163,42 @@
                         <input type="hidden" id="imgUrl" name="imgUrl"/>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">banner图名称：</label>
+                            <label class="col-sm-3 control-label">名称：</label>
                             <div class="col-sm-8">
-                                <input id="name" name="name" class="form-control" type="text"
+                                <input id="name" name="name" class="form-control" type="text" placeholder="请输入名称"
                                        value="${banner.name}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">副标题：</label>
+                            <label class="col-sm-3 control-label">标题：</label>
                             <div class="col-sm-8">
                                 <input id="subtitle" name="subtitle" class="form-control" type="text"
+                                       placeholder="请输入标题"
                                        value="${banner.subtitle}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">banner图显示位置：</label>
+                            <label class="col-sm-3 control-label">显示位置：</label>
                             <div class="col-sm-8">
                                 <select name="type" class="form-control">
-                                <#--categories-->
-                                <#list bannerPositions as dictInfo>
-                                    <option value="${dictInfo.dictCode}">${dictInfo.info}</option>
-                                </#list>
+                                    <#--categories-->
+                                    <#list positions as p>
+                                        <option value="${p.dictCode}">${p.info}</option>
+                                    </#list>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">banner图主题：</label>
+                            <label class="col-sm-3 control-label">渠道：</label>
                             <div class="col-sm-8">
                                 <select name="rank" class="form-control">
-                                <#--categories-->
-                                <#list ranks as dictInfo>
-                                    <option value="${dictInfo.dictCode}">${dictInfo.info}</option>
-                                </#list>
+                                    <#--categories-->
+                                    <#list channels as c>
+                                        <option value="${c.dictCode}">${c.info}</option>
+                                    </#list>
                                 </select>
                             </div>
                         </div>
@@ -183,15 +207,14 @@
                             <label class="col-sm-3 control-label">详情链接:</label>
                             <div class="col-sm-8">
                                 <input id="url" name="url"
-                                       class="laydate-icon form-control layer-date"
+                                       class="laydate-icon form-control layer-date" placeholder="请输入详情链接"
                                        value="${banner.url}">
                             </div>
                         </div>
 
 
-
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">banner图片：</label>
+                            <label class="col-sm-3 control-label">图片：</label>
                             <div class="col-sm-8">
                                 <div class="fileinput fileinput-new" data-provides="fileinput" id="uploadImageDiv">
                                     <div class="fileinput-new thumbnail" style="width: 150px; height: 90px;">
@@ -201,15 +224,14 @@
                                          style="max-width: 200px; max-height: 120px;background-color: red;"></div>
                                     <div>
                         <span class="btn default btn-file"> <span
-                                class="fileinput-new">选择图片</span>  <input type="file" name="multipartFile"
-                                                                          id="multipartFile" accept="image/*"
-                                                                          onchange="changeFile(this)"/></span>
+                                    class="fileinput-new">选择图片</span>  <input type="file" name="multipartFile"
+                                                                              id="multipartFile" accept="image/*"
+                                                                              onchange="changeFile(this)"/></span>
                                         <span>请选择1M以内图片</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
 
 
                         <div class="form-group">
@@ -253,20 +275,15 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "${ctx!}/mall/banner/addBanner",
+                    url: "${ctx!}/admin/banner/addBanner",
                     data: $(form).serialize(),
                     success: function (msg) {
-                        layer.msg(msg, {time: 2000}, function () {
-                        });
-                        if (msg.code == 0) {
-                            layer.msg(msg.message, {time: 1000}, function () {
+                        layer.msg(msg.meta.message, {time: 1000}, function () {
+                            if(msg.meta.code==1){
                                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                                 parent.layer.close(index);
-                            });
-                        }else{
-                            layer.msg(msg.message, {time: 2000}, function () {
-                            });
-                        }
+                            }
+                        });
                     }
                 });
             }
@@ -283,7 +300,7 @@
         if (document.getElementById("multipartFile").value != "") {
             var formData = new FormData(document.getElementById("frm"));//表单id
             $.ajax({
-                url: '${ctx!}/mall/banner/upload',
+                url: '${ctx!}/admin/banner/upload',
                 type: 'POST',
                 data: formData,
                 dataType: "json",
@@ -292,9 +309,9 @@
                 contentType: false,
                 processData: false,
                 success: function (msg) {
-                    if (msg.code == 0) {
-                        $('#img').attr('src', msg.message);
-                        $("#imgUrl").val(msg.message);
+                    if (msg.meta.code == 1) {
+                        $('#img').attr('src', msg.data.url);
+                        $("#imgUrl").val(msg.data.url);
                     }
 
                 }

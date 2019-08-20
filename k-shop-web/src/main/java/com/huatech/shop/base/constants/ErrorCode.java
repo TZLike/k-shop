@@ -13,6 +13,7 @@ public enum ErrorCode {
     RESOURCE_HAVE_CHILD(20001, "此资源是子资源不可一次删除"),
     DICT_IS_EXISTS(30000, "数据字典已经存在"),
     DICT_INFO_IS_EXISTS(30001, "数据明细已经存在"),
+    BANNER_NOT_EXISTS(40000, "banner不存在"),
     ;
 
 

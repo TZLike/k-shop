@@ -47,26 +47,26 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <#--                    <@shiro.hasPermission name="dict:user:index">-->
+                        <@shiro.hasPermission name="system:user:index">
                         <li>
                             <a class="J_menuItem" href="${ctx!}/admin/user/index">用户管理</a>
                         </li>
-                        <#--                    </@shiro.hasPermission>-->
-                        <#--                    <@shiro.hasPermission name="dict:role:index">-->
+                                        </@shiro.hasPermission>
+                          <@shiro.hasPermission name="system:role:index">
                         <li>
                             <a class="J_menuItem" href="${ctx!}/admin/role/index">角色管理</a>
                         </li>
-                        <#--                    </@shiro.hasPermission>-->
-                        <#--                    <@shiro.hasPermission name="dict:resource:index">-->
+                                            </@shiro.hasPermission>
+                                            <@shiro.hasPermission name="system:resource:index">
                         <li>
                             <a class="J_menuItem" href="${ctx!}/admin/resource/index">资源管理</a>
                         </li>
-                        <#--                    </@shiro.hasPermission>-->
-                        <#--                    <@shiro.hasPermission name="dict:dict:index">-->
+                                            </@shiro.hasPermission>
+                                            <@shiro.hasPermission name="system:dict:index">
                         <li>
                             <a class="J_menuItem" href="${ctx!}/admin/dict/index">字典管理</a>
                         </li>
-                        <#--                    </@shiro.hasPermission>-->
+                                            </@shiro.hasPermission>
 
                     </ul>
                 </li>
@@ -79,23 +79,23 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <#--                    <@shiro.hasPermission name="dict:user:index">-->
+                                            <@shiro.hasPermission name="system:user:index">
                         <li>
-                            <a class="J_menuItem" href="${ctx!}/mall/banner/index">轮播图配置</a>
+                            <a class="J_menuItem" href="${ctx!}/admin/banner/index">轮播图配置</a>
                         </li>
-                        <#--                    </@shiro.hasPermission>-->
+                                            </@shiro.hasPermission>
 
-                        <#--                    <@shiro.hasPermission name="dict:user:index">-->
+                                            <@shiro.hasPermission name="system:user:index">
                         <li>
-                            <a class="J_menuItem" href="${ctx!}/mall/category/index">商品分类配置</a>
+                            <a class="J_menuItem" href="${ctx!}/admin/category/index">商品分类配置</a>
                         </li>
-                        <#--                    </@shiro.hasPermission>-->
+                                            </@shiro.hasPermission>
 
-                        <#--                    <@shiro.hasPermission name="dict:user:index">-->
+                                            <@shiro.hasPermission name="system:user:index">
                         <li>
-                            <a class="J_menuItem" href="${ctx!}/mall/product/index">商品信息配置</a>
+                            <a class="J_menuItem" href="${ctx!}/admin/product/index">商品信息配置</a>
                         </li>
-                        <#--                    </@shiro.hasPermission>-->
+                                            </@shiro.hasPermission>
 
                     </ul>
                 </li>
