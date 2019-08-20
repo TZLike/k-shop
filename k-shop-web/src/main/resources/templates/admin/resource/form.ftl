@@ -51,13 +51,13 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">资源名称：</label>
                             <div class="col-sm-8">
-                                <input id="name" name="name" class="form-control" type="text" value="${resource.name}">
+                                <input id="name" name="name" placeholder="请输入资源名称" class="form-control" type="text" value="${resource.name}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">唯一标识：</label>
                             <div class="col-sm-8">
-                                <input id="sourceKey" name="sourceKey" class="form-control" type="text"
+                                <input id="sourceKey" name="sourceKey" class="form-control" type="text" placeholder="请输入资源唯一标示"
                                        value="${resource.sourceKey}">
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">资源url：</label>
                             <div class="col-sm-8">
-                                <input id="sourceUrl" name="sourceUrl" class="form-control"
+                                <input id="sourceUrl" name="sourceUrl" class="form-control" placeholder="请输入资源url"
                                        value="${resource.sourceUrl}">
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">排序：</label>
                             <div class="col-sm-8">
-                                <input id="sort" name="sort" class="form-control" value="${resource.sort}">
+                                <input id="sort" name="sort" class="form-control" value="${resource.sort}" placeholder="资源排序">
                             </div>
                         </div>
                         <div class="form-group">
@@ -103,7 +103,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">描述：</label>
                             <div class="col-sm-8">
-                                <input id="description" name="description" class="form-control"
+                                <input id="description" name="description" class="form-control" placeholder="请输入描述信息"
                                        value="${resource.description}">
                             </div>
                         </div>

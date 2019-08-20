@@ -3,13 +3,17 @@ package com.huatech.shop.module.role.controller;
 import com.github.pagehelper.PageInfo;
 import com.huatech.shop.base.constants.ShopConstants;
 import com.huatech.shop.base.controller.BaseController;
+import com.huatech.shop.base.init.SysParamService;
 import com.huatech.shop.common.result.ResponseResult;
+import com.huatech.shop.module.dict.entity.DictInfo;
 import com.huatech.shop.module.role.entity.Role;
 import com.huatech.shop.module.role.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
@@ -18,6 +22,9 @@ public class RoleController extends BaseController {
 
     @Autowired
     private IRoleService roleService;
+
+    @Autowired
+    private SysParamService sysParamService;
 
     @RequestMapping(value = {"/", "/index"})
     public String index() {
@@ -34,7 +41,9 @@ public class RoleController extends BaseController {
 
     //    前往角色添加页面
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add() {
+    public String add(ModelMap modelMap) {
+        List<DictInfo> infos = sysParamService.listParam(ShopConstants.Role.ROLE_STATUS);
+        modelMap.put("roles", infos);
         return "admin/role/form";
     }
 
@@ -43,6 +52,8 @@ public class RoleController extends BaseController {
     public String edit(@PathVariable Integer id, ModelMap map) {
         Role role = roleService.find(id);
         map.put("role", role);
+        List<DictInfo> infos = sysParamService.listParam(ShopConstants.Role.ROLE_STATUS);
+        map.put("roles", infos);
         return "admin/role/form";
     }
 

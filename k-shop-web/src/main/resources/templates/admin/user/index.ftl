@@ -161,7 +161,7 @@
                 title: '用户修改',
                 shadeClose: true,
                 shade: false,
-                area: ['893px', '600px'],
+                area: ['823px', '500px'],
                 content: '${ctx!}/admin/user/edit/' + id,
                 end: function (index) {
                     $('#table_list').bootstrapTable("refresh");
@@ -174,7 +174,7 @@
                 title: '用户添加',
                 shadeClose: false,
                 shade: [0.5, '#ccc'],
-                area: ['893px', '600px'],
+                area: ['823px', '500px'],
                 content: '${ctx!}/admin/user/add',
                 end: function (index) {
                     $('#table_list').bootstrapTable("refresh");

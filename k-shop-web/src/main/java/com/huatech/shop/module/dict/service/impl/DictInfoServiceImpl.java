@@ -86,4 +86,9 @@ public class DictInfoServiceImpl extends BaseServiceImpl<DictInfo, Integer> impl
 
         }
     }
+
+    @Override
+    public List<DictInfo> findListOrderByTypeCode() {
+        return infoMapper.findListOrderByTypeCode();
+    }
 }

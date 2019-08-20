@@ -1,7 +1,9 @@
 package com.huatech.shop.module.account.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.huatech.shop.base.constants.ShopConstants;
 import com.huatech.shop.base.controller.BaseController;
+import com.huatech.shop.base.init.SysParamService;
 import com.huatech.shop.base.result.DataGridResultInfo;
 import com.huatech.shop.common.constants.ApiConstants;
 import com.huatech.shop.common.result.ResponseResult;
@@ -9,6 +11,7 @@ import com.huatech.shop.module.account.entity.User;
 import com.huatech.shop.module.account.mapper.UserExample;
 import com.huatech.shop.module.account.param.UserParam;
 import com.huatech.shop.module.account.service.IUserService;
+import com.huatech.shop.module.dict.entity.DictInfo;
 import com.huatech.shop.module.role.entity.Role;
 import com.huatech.shop.module.role.service.IRoleService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +19,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +45,8 @@ public class UserController extends BaseController {
     private IUserService userService;
     @Autowired
     private IRoleService roleService;
+    @Autowired
+    private SysParamService sysParamService;
 
     /**
      * 用户管理初始化页面
@@ -69,8 +75,17 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add() {
+    public String add(ModelMap modelMap) {
+        findInfosByTypeCode(modelMap);
         return "admin/user/form";
+    }
+
+    public void findInfosByTypeCode(ModelMap modelMap) {
+        List<DictInfo> infos = sysParamService.listParam(ShopConstants.User.USER_SEX);
+        modelMap.put("infos", infos);
+        List<DictInfo> userInfos = sysParamService.listParam(ShopConstants.User.USER_STATUS);
+        modelMap.put("userInfos", userInfos);
+
     }
 
     //查找用户信息前往编辑页面
@@ -78,6 +93,7 @@ public class UserController extends BaseController {
     public String edit(@PathVariable Integer id, ModelMap map) {
         User user = userService.find(id);
         map.put("user", user);
+        findInfosByTypeCode(map);
         return "admin/user/form";
     }
 

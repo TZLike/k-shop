@@ -5,6 +5,8 @@ import com.huatech.shop.common.base.IBaseService;
 import com.huatech.shop.module.dict.dto.DictInfoDTO;
 import com.huatech.shop.module.dict.entity.DictInfo;
 
+import java.util.List;
+
 /**
  * @ClassName IDictInfoService
  * @Description TODO
@@ -18,4 +20,7 @@ public interface IDictInfoService extends IBaseService<DictInfo, Integer> {
 
     //保存字典明细数据
     void saveOrUpdate(DictInfo dictInfo);
+
+    //获取所有的字典明细
+    List<DictInfo> findListOrderByTypeCode();
 }

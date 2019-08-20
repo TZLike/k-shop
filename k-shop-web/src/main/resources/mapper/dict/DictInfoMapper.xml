@@ -38,6 +38,10 @@
                 and dict_code = #{dictCode}
             </if>
 
+            <if test="info != null and info !=''">
+
+                and info = #{info}
+            </if>
         </where>
     </select>
 
@@ -49,5 +53,14 @@
         </where>
 
     </delete>
+
+    <!--    获取所有的字典明细-->
+    <select id="findListOrderByTypeCode" resultType="com.huatech.shop.module.dict.entity.DictInfo">
+
+        select id,dict_code dictCode,type_code typeCode,info,remark
+        from t_dict_info
+        order by type_code asc
+
+    </select>
 
 </mapper>

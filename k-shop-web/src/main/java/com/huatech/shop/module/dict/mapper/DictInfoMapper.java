@@ -22,4 +22,7 @@ public interface DictInfoMapper extends IBaseMapper<DictInfo, Integer> {
     DictInfo findDictInfoByTypeCodeAndDictCode(DictInfo dictInfo);
 
     void deleteInfoByTypeCode(String typeCode);
+
+    //获取所有的字典明细列表
+    List<DictInfo> findListOrderByTypeCode();
 }

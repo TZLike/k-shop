@@ -18,8 +18,27 @@ public class ShopConstants extends ApiConstants {
 
         public static final String USER_NAME_EXIST = "用户名已经存在";
         public static final String PASSWORD_ORIGINAL = "12345678";
+        public static final String USER_SEX = "10000";
+        public static final String USER_STATUS = "30000";
 
     }
 
+    /**
+     * 角色相关
+     */
+    public static class Role {
+        public static final String ROLE_STATUS = "40000";
+
+    }
+
+    /**
+     * 资源相关
+     */
+
+    public static class Resource {
+        public static final String RESOURCE_TYPE = "20000";
+        public static final String RESOURCE_STATUS = "50000";
+
+    }
 
 }

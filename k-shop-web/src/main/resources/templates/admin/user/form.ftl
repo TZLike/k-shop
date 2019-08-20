@@ -35,13 +35,15 @@
                             <label class="col-sm-3 control-label">账户名：</label>
                             <div class="col-sm-8">
                                 <input id="userName" name="userName" class="form-control" type="text"
+                                       placeholder="请输入账号名"
                                        value="${user.userName}" <#if user?exists> readonly="readonly"</#if> >
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">昵称：</label>
                             <div class="col-sm-8">
-                                <input id="nickName" name="nickName" class="form-control" type="text"
+                                <input id="nickName" name="nickName" class="form-control" placeholder="请输入昵称"
+                                       type="text"
                                        value="${user.nickName}">
                             </div>
                         </div>
@@ -49,36 +51,42 @@
                             <label class="col-sm-3 control-label">性别：</label>
                             <div class="col-sm-8">
                                 <select name="sex" class="form-control">
-                                    <option value="0" <#if user.sex == 0>selected="selected"</#if>>女</option>
-                                    <option value="1" <#if user.sex == 1>selected="selected"</#if>>男</option>
+                                    <#list infos as sex>
+                                        <option value="${sex.dictCode}"
+                                                <#if sex.dictCode == user.sex>selected="selected"</#if>>${sex.info}</option>
+                                    </#list>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">电话：</label>
                             <div class="col-sm-8">
-                                <input id="telephone" name="telephone" class="form-control" value="${user.telephone}">
+                                <input id="telephone" name="telephone" placeholder="请输入手机号" class="form-control"
+                                       value="${user.telephone}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">E-mail：</label>
                             <div class="col-sm-8">
-                                <input id="email" name="email" class="form-control" value="${user.email}">
+                                <input id="email" name="email" placeholder="请输入邮箱" class="form-control"
+                                       value="${user.email}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">状态：</label>
                             <div class="col-sm-8">
                                 <select name="locked" class="form-control">
-                                    <option value="0" <#if user.locked == 0>selected="selected"</#if>>未锁定</option>
-                                    <option value="1" <#if user.locked == 1>selected="selected"</#if>>锁定</option>
+                                    <#list userInfos as user_status>
+                                        <option value="${user_status.dictCode}"
+                                                <#if user_status.dictCode == user.locked>selected="selected"</#if>>${user_status.info}</option>
+                                    </#list>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">描述：</label>
                             <div class="col-sm-8">
-                                <input id="description" name="description" class="form-control"
+                                <input id="description" name="description" class="form-control" placeholder="请输入描述"
                                        value="${user.description}">
                             </div>
                         </div>

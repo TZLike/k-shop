@@ -155,8 +155,8 @@
         	      type: 2,
         	      title: '资源修改',
         	      shadeClose: true,
-        	      shade: false,
-        	      area: ['893px', '600px'],
+                  shade: [0.5, '#ccc'],
+                  area: ['840px', '560px'],
         	      content: '${ctx!}/admin/resource/edit/' + id,
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
@@ -168,8 +168,8 @@
         	      type: 2,
         	      title: '资源添加',
         	      shadeClose: true,
-        	      shade: false,
-        	      area: ['893px', '600px'],
+                  shade: [0.5, '#ccc'],
+        	      area: ['840px', '560px'],
         	      content: '${ctx!}/admin/resource/add',
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
