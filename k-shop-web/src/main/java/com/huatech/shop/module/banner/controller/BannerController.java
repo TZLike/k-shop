@@ -1,7 +1,6 @@
 package com.huatech.shop.module.banner.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.huatech.shop.base.config.FastDFSClientWrapper;
 import com.huatech.shop.base.constants.ShopConstants;
 import com.huatech.shop.base.controller.BaseController;
 import com.huatech.shop.base.init.SysParamService;
@@ -43,8 +42,7 @@ public class BannerController extends BaseController {
     @Autowired
     private IBannerService bannerService;
 
-    @Autowired
-    private FastDFSClientWrapper clientWrapper;
+
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
@@ -78,26 +76,7 @@ public class BannerController extends BaseController {
 
     }
 
-    /**
-     * 上传图片
-     *
-     * @param multipartFile
-     * @return
-     */
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseResult bannerUpload(MultipartFile multipartFile) {
 
-        String fileUrl = "";
-        if (multipartFile != null) {
-            try {
-                fileUrl = clientWrapper.uploadFile(multipartFile);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return new ResponseResult().ok(ShopConstants.SUCCESS, "success").addData("url", fileUrl);
-    }
 
     /**
      * 添加banner图

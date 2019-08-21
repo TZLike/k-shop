@@ -1,10 +1,10 @@
 package com.huatech.shop.module.banner.param;
 
+import com.huatech.shop.common.base.BasePageQuery;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 
 /**
  * @ClassName BannerParam
@@ -16,11 +16,9 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BannerParam implements Serializable {
+public class BannerParam extends BasePageQuery {
 
     private String status;
     private String channel;
     private String position;
-    private Integer pageNumber;
-    private Integer pageSize;
 }

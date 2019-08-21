@@ -28,13 +28,13 @@
                     <form class="form-horizontal m-t" id="frm" method="post">
 
                         <div class="col-xs-4">
-                            <label class="col-sm-4 control-label">类目状态:</label>
+                            <label class="col-sm-4 control-label">状态:</label>
                             <div class="col-sm-8">
                                 <select id="status" name="status" class="form-control">
                                     <option value="请选择..">请选择..</option>
-                                <#list categoryStatus as dictInfo>
-                                    <option value="${dictInfo.dictCode}">${dictInfo.info}</option>
-                                </#list>
+                                    <#list categoryStatus as dictInfo>
+                                        <option value="${dictInfo.dictCode}">${dictInfo.info}</option>
+                                    </#list>
                                 </select>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                     <div id="toolbar-btn" class="btn-group pull-left" style="padding-bottom:10px;">
                         <button id="btn_add" onclick="add()" type="button" class="btn btn-info btn-space">
                             <span class="fa fa-search" aria-hidden="true" class="btn-icon-space"></span>
-                            新建类目
+                            添加
                         </button>
                         <br/>
                     </div>
@@ -77,7 +77,7 @@
     </div>
 
     <!-- 全局js -->
-<#include "/admin/common/common.ftl">
+    <#include "/admin/common/common.ftl">
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function () {
@@ -88,7 +88,7 @@
                 //必须设置，不然request.getParameter获取不到请求参数
                 contentType: "application/x-www-form-urlencoded",
                 //获取数据的Servlet地址
-                url: "${ctx!}/mall/category/list",
+                url: "${ctx!}/admin/category/list",
                 //表格显示条纹
                 striped: true,
                 //启动分页
@@ -123,26 +123,33 @@
                     title: "类目名称",
                     field: "name"
                 }, {
+                    title: "展位图片",
+                    field: "imgUrl"
+                }, {
                     title: "状态",
-                    field: "statusText"
+                    field: "status"
                 }, {
                     title: "创建时间",
                     field: "createTime",
+                    sortable: true
+                }, {
+                    title: "修改时间时间",
+                    field: "updateTime",
                     sortable: true
                 }, {
                     title: "操作",
                     field: "empty",
                     formatter: function (value, row, index) {
                         var operateHtml = "";
-                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+ row.id+'\')"><i class="fa fa-remove"></i>&nbsp;编辑</button> &nbsp;</@shiro.hasPermission>';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="admin:category:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;编辑</button> &nbsp;</@shiro.hasPermission>';
 
                         if (row.status == 2) {
-                            operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-success btn-xs" type="button" onclick="onSale(\''+ row.id+'\')"><i class="fa fa-remove"></i>&nbsp;上架</button> &nbsp;</@shiro.hasPermission>';
+                            operateHtml = operateHtml + '<@shiro.hasPermission name="admin:category:up"><button class="btn btn-success btn-xs" type="button" onclick="onSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;上架</button> &nbsp;</@shiro.hasPermission>';
                         } else if (row.status == 1) {
-                            operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-info btn-xs" type="button" onclick="offSale(\''+ row.id+'\')"><i class="fa fa-remove"></i>&nbsp;下线</button> &nbsp;</@shiro.hasPermission>';
+                            operateHtml = operateHtml + '<@shiro.hasPermission name="admin:category:down"><button class="btn btn-info btn-xs" type="button" onclick="offSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;下线</button> &nbsp;</@shiro.hasPermission>';
 
                         }
-                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+ row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="admin:category:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
 
 
                         return operateHtml;
@@ -158,7 +165,7 @@
                 shadeClose: true,
                 shade: false,
                 area: ['600px', '400px'],
-                content: '${ctx!}/mall/category/add',
+                content: '${ctx!}/admin/category/add',
                 end: function (index) {
                     $('#table_list').bootstrapTable("refresh");
                 }
@@ -172,7 +179,7 @@
                 shadeClose: true,
                 shade: false,
                 area: ['650px', '600px'],
-                content: '${ctx!}/mall/category/edit/'+id,
+                content: '${ctx!}/admin/category/edit/' + id,
                 end: function (index) {
                     $('#table_list').bootstrapTable("refresh");
                 }
@@ -185,7 +192,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "${ctx!}/mall/category/down/" + id + "/1",
+                    url: "${ctx!}/admin/category/up/" + id + "/1",
                     success: function (msg) {
                         layer.msg(msg.message, {time: 2000}, function () {
                             $('#table_list').bootstrapTable("refresh");
@@ -201,7 +208,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "${ctx!}/mall/category/up/" + id + "/2",
+                    url: "${ctx!}/admin/category/down/" + id + "/2",
                     success: function (msg) {
                         layer.msg(msg.message, {time: 2000}, function () {
                             $('#table_list').bootstrapTable("refresh");
@@ -217,7 +224,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "${ctx!}/mall/category/del/" + id,
+                    url: "${ctx!}/admin/category/del/" + id,
                     success: function (msg) {
                         layer.msg(msg.message, {time: 2000}, function () {
                             $('#table_list').bootstrapTable("refresh");

@@ -21,6 +21,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class BannerDto implements Serializable {
 
+    private Integer id;
     private String name; //名称
     private String subTitle; //标题
     private String imgUrl;

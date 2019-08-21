@@ -1,10 +1,8 @@
 package com.huatech.shop.module.account.param;
 
-import lombok.AllArgsConstructor;
+import com.huatech.shop.common.base.BasePageQuery;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 
 /**
  * @ClassName UserParam
@@ -14,10 +12,6 @@ import java.io.Serializable;
  * @Version 1.0
  **/
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserParam implements Serializable {
+public class UserParam extends BasePageQuery {
 
-    private Integer pageNumber;
-    private Integer pageSize;
 }

@@ -1,6 +1,5 @@
-package com.huatech.shop.module.dict.param;
+package com.huatech.shop.common.base;
 
-import com.huatech.shop.common.base.BasePageQuery;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,15 +7,17 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * @ClassName DictParam
+ * @ClassName BasePageQuery
  * @Description TODO
  * @Author like
- * @Date 2019-08-18 00:09
+ * @Date 2019-08-21 13:06
  * @Version 1.0
  **/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DictParam extends BasePageQuery {
-    private String name;
+public class BasePageQuery implements Serializable {
+
+    private Integer pageNumber;
+    private Integer pageSize;
 }

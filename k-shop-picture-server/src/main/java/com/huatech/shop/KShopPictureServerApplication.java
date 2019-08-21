@@ -3,17 +3,13 @@ package com.huatech.shop;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients
-@tk.mybatis.spring.annotation.MapperScan("com.huatech.shop.module.**.mapper")
-public class KShopWebApplication {
+public class KShopPictureServerApplication {
 
     public static void main(String[] args) {
-
-        SpringApplication.run(KShopWebApplication.class, args);
+        SpringApplication.run(KShopPictureServerApplication.class, args);
     }
 
 }

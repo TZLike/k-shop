@@ -300,7 +300,7 @@
         if (document.getElementById("multipartFile").value != "") {
             var formData = new FormData(document.getElementById("frm"));//表单id
             $.ajax({
-                url: '${ctx!}/admin/banner/upload',
+                url: '${ctx!}/picture/upload',
                 type: 'POST',
                 data: formData,
                 dataType: "json",
