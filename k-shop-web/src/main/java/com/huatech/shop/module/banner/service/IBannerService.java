@@ -17,4 +17,10 @@ public interface IBannerService {
     void saveOrUpdate(Banner param);
 
     PageInfo<BannerDto> findBanners(BannerParam bannerParam);
+
+    //上线或者下线banner
+    void upOrDownBanner(Integer id, String status);
+
+    //删除banner
+    void delete(Integer id);
 }

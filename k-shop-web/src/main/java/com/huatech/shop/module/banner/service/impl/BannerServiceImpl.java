@@ -69,4 +69,19 @@ public class BannerServiceImpl extends BaseServiceImpl<Banner, Integer> implemen
         }
         return pageInfo;
     }
+
+    /**
+     * 上线banner图
+     *
+     * @param id
+     */
+    @Override
+    public void upOrDownBanner(Integer id, String status) {
+        Banner banner = bannerMapper.selectByPrimaryKey(id);
+        if (banner != null) {
+            banner.setStatus(status);
+            bannerMapper.updateByPrimaryKey(banner);
+        }
+    }
+
 }

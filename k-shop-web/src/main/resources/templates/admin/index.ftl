@@ -79,19 +79,19 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                                            <@shiro.hasPermission name="system:user:index">
+                                            <@shiro.hasPermission name="admin:banner:index">
                         <li>
                             <a class="J_menuItem" href="${ctx!}/admin/banner/index">轮播图配置</a>
                         </li>
                                             </@shiro.hasPermission>
 
-                                            <@shiro.hasPermission name="system:user:index">
+                                            <@shiro.hasPermission name="admin:category:index">
                         <li>
                             <a class="J_menuItem" href="${ctx!}/admin/category/index">商品分类配置</a>
                         </li>
                                             </@shiro.hasPermission>
 
-                                            <@shiro.hasPermission name="system:user:index">
+                                            <@shiro.hasPermission name="admin:product:index">
                         <li>
                             <a class="J_menuItem" href="${ctx!}/admin/product/index">商品信息配置</a>
                         </li>

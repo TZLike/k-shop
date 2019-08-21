@@ -194,7 +194,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">渠道：</label>
                             <div class="col-sm-8">
-                                <select name="rank" class="form-control">
+                                <select name="channel" class="form-control">
                                     <#--categories-->
                                     <#list channels as c>
                                         <option value="${c.dictCode}">${c.info}</option>

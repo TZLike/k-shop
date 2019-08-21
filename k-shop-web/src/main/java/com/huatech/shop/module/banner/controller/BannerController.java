@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -98,10 +99,52 @@ public class BannerController extends BaseController {
         return new ResponseResult().ok(ShopConstants.SUCCESS, "success").addData("url", fileUrl);
     }
 
+    /**
+     * 添加banner图
+     *
+     * @param param
+     * @return
+     */
     @RequestMapping(value = "/addBanner")
     @ResponseBody
     public ResponseResult addBanner(Banner param) {
         bannerService.saveOrUpdate(param);
         return new ResponseResult().ok(ShopConstants.SUCCESS, "success");
     }
+
+    /**
+     * 上线banner图
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/up/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseResult upBanner(@PathVariable("id") Integer id) {
+        bannerService.upOrDownBanner(id, "1");
+        return new ResponseResult().ok(ShopConstants.SUCCESS, "success");
+    }
+
+    /**
+     * 下线banner图
+     *
+     * @param id
+     * @return
+     */
+
+    @RequestMapping(value = "/down/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseResult downBanner(@PathVariable("id") Integer id) {
+        bannerService.upOrDownBanner(id, "2");
+        return new ResponseResult().ok(ShopConstants.SUCCESS, "success");
+    }
+
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseResult deleteBanner(@PathVariable("id") Integer id) {
+        bannerService.delete(id);
+        return new ResponseResult().ok(ShopConstants.SUCCESS, "success");
+    }
+
 }

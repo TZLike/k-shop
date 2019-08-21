@@ -56,6 +56,7 @@
                             <div class="col-sm-8">
                                 <select id="position" name="position" class="form-control">
                                     <#--categories-->
+                                    <option value="">请选择..</option>
                                     <#list positions as p>
                                         <option value="${p.dictCode}">${p.info}</option>
                                     </#list>
@@ -69,14 +70,15 @@
                 </form>
                 <br/>
                 <div class="ibox-content">
-
-                    <div id="toolbar-btn" class="btn-group pull-left" style="padding-bottom:10px;">
-                        <button id="btn_add" onclick="add()" type="button" class="btn btn-info btn-space">
-                            <span class="fa fa-search" aria-hidden="true" class="btn-icon-space"></span>
-                            新建轮播图
-                        </button>
-                        <br/>
-                    </div>
+                    <@shiro.hasPermission name="admin:banner:add">
+                        <div id="toolbar-btn" class="btn-group pull-left" style="padding-bottom:10px;">
+                            <button id="btn_add" onclick="add()" type="button" class="btn btn-info btn-space">
+                                <span class="fa fa-search" aria-hidden="true" class="btn-icon-space"></span>
+                                添加
+                            </button>
+                            <br/>
+                        </div>
+                    </@shiro.hasPermission>
                     <div id="toolbar-btn" class="btn-group pull-right" style="padding-bottom:10px;">
                         <button id="btn_add" onclick="search()" type="button" class="btn btn-info btn-space">
                             <span class="fa fa-search" aria-hidden="true" class="btn-icon-space"></span>
@@ -179,24 +181,15 @@
                     title: "操作",
                     field: "empty",
                     formatter: function (value, row, index) {
-                        <#--var operateHtml = "";-->
-                        <#--if (row.sInt == 0 || row.sInt == 2) {-->
-                        <#--    operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-success btn-xs" type="button" onclick="onSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;上线</button> &nbsp;</@shiro.hasPermission>';-->
-                        <#--} else if (row.sInt == 1) {-->
-                        <#--    operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="offSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;下线</button> &nbsp;</@shiro.hasPermission>';-->
-
-                        <#--}-->
-                        <#--operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-primary btn-xs" type="button" onclick="del(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';-->
-                        <#--return operateHtml;-->
                         var operateHtml = "";
                         if (row.sInt == 0 || row.sInt == 2) {
-                            operateHtml = operateHtml + '<button class="btn btn-success btn-xs" type="button" onclick="onSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;上线</button> &nbsp;';
+                            operateHtml = operateHtml + '<@shiro.hasPermission name="admin:banner:up"><button class="btn btn-success btn-xs" type="button" onclick="onSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;上线</button> &nbsp;</@shiro.hasPermission>';
                         } else if (row.sInt == 1) {
-                            operateHtml = operateHtml + '<button class="btn btn-danger btn-xs" type="button" onclick="offSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;下线</button> &nbsp;';
-
+                            operateHtml = operateHtml + '<@shiro.hasPermission name="admin:banner:down"><button class="btn btn-danger btn-xs" type="button" onclick="offSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;下线</button> &nbsp;</@shiro.hasPermission>';
                         }
-                        operateHtml = operateHtml + '<button class="btn btn-primary btn-xs" type="button" onclick="del(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="admin:banner:delete"><button class="btn btn-primary btn-xs" type="button" onclick="del(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
                         return operateHtml;
+
                     }
                 }]
             });
@@ -223,9 +216,11 @@
                     dataType: "json",
                     url: "${ctx!}/admin/banner/up/" + id,
                     success: function (msg) {
-                        layer.msg(msg.message, {time: 2000}, function () {
-                            $('#table_list').bootstrapTable("refresh");
-                            layer.close(index);
+                        layer.msg(msg.meta.message, {time: 2000}, function () {
+                            if(msg.meta.code==1){
+                                $('#table_list').bootstrapTable("refresh");
+                                layer.close(index);
+                            }
                         });
                     }
                 });
@@ -237,11 +232,13 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "${ctx!}/mall/banner/down/" + id,
+                    url: "${ctx!}/admin/banner/down/" + id,
                     success: function (msg) {
-                        layer.msg(msg.message, {time: 2000}, function () {
-                            $('#table_list').bootstrapTable("refresh");
-                            layer.close(index);
+                        layer.msg(msg.meta.message, {time: 2000}, function () {
+                            if(msg.meta.code==1){
+                                $('#table_list').bootstrapTable("refresh");
+                                layer.close(index);
+                            }
                         });
                     }
                 });
@@ -253,11 +250,13 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "${ctx!}/mall/banner/delete/" + id,
+                    url: "${ctx!}/admin/banner/delete/" + id,
                     success: function (msg) {
-                        layer.msg(msg.message, {time: 2000}, function () {
-                            $('#table_list').bootstrapTable("refresh");
-                            layer.close(index);
+                        layer.msg(msg.meta.message, {time: 2000}, function () {
+                            if (msg.meta.code == 1) {
+                                $('#table_list').bootstrapTable("refresh");
+                                layer.close(index);
+                            }
                         });
                     }
                 });
