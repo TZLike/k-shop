@@ -28,7 +28,7 @@ public class Category extends BaseEntity {
 
     private String imgUrl;
 
-    private Boolean status;
+    private String status;
 
     @JSONField(format = "yyyy-MM:dd HH:mm:ss")
     private Date createTime;

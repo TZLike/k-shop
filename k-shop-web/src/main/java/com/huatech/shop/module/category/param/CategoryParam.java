@@ -14,6 +14,6 @@ import lombok.Data;
 @Data
 public class CategoryParam extends BasePageQuery {
 
-    private Integer status; //状态
+    private String status; //状态
 
 }

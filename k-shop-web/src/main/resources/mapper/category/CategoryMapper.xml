@@ -6,7 +6,7 @@
         <result column="category_no" jdbcType="INTEGER" property="categoryNo"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
-        <result column="status" jdbcType="BIT" property="status"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
@@ -14,5 +14,20 @@
     <sql id="Base_Column_List">
     id, category_no, name, img_url, status, create_time, update_time
   </sql>
+
+    <select id="findProductCategory" resultType="com.huatech.shop.common.dto.CategoryDto"
+            parameterType="com.huatech.shop.module.category.param.CategoryParam">
+
+        select
+        c.id,c.category_no categoryNo,c.img_url imgUrl,c.name,c.status sInt,
+        (select info from t_dict_info where type_code = '13000' and dict_code = c.status) `status` ,
+        c.create_time createTime,c.update_time updateTime
+        from t_category c
+        <where>
+            <if test="status !=null and status !=''">
+                c.status = #{status}
+            </if>
+        </where>
+    </select>
 
 </mapper>

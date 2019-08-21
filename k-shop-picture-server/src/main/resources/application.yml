@@ -19,9 +19,9 @@ spring:
 fdfs:
   soTimeout: 1500
   connectTimeout: 600
-  resHost: 192.168.105.249
+  resHost: 192.168.101.249
   storagePort: 8888
-  trackerList[0]: 192.168.105.249:22122
+  trackerList[0]: 192.168.101.249:22122
   thumbImage:
     height: 150
     width: 150

@@ -50,5 +50,12 @@ public class ShopConstants extends ApiConstants {
         public static final String BANNER_STATUS = "60000";
     }
 
+    /**
+     * 商品类目相关
+     */
+    public static  class Category{
+        public  static  final  String CATEGORY_STATUS = "13000";
+    }
+
 
 }

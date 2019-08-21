@@ -91,11 +91,11 @@
                         </li>
                                             </@shiro.hasPermission>
 
-                                            <@shiro.hasPermission name="admin:product:index">
+<#--                                            <@shiro.hasPermission name="admin:product:index">-->
                         <li>
                             <a class="J_menuItem" href="${ctx!}/admin/product/index">商品信息配置</a>
                         </li>
-                                            </@shiro.hasPermission>
+<#--                                            </@shiro.hasPermission>-->
 
                     </ul>
                 </li>

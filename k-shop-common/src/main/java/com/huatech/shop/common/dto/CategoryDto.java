@@ -29,5 +29,6 @@ public class CategoryDto implements Serializable {
     private Date createTime;
     @JSONField(format = "yyyy-MM:dd HH:mm:ss")
     private Date updateTime;
+    private Integer sInt;
 
 }

@@ -16,4 +16,8 @@ import com.huatech.shop.module.category.param.CategoryParam;
 public interface ICategoryService extends IBaseService<Category, Integer> {
     //获取所有的商品类目列表
     PageInfo<CategoryDto> findProductCategory(CategoryParam categoryParam);
+
+    void saveOrUpdate(Category category);
+
+    void upOrDownCategory(Integer id, String s);
 }

@@ -174,8 +174,8 @@
                             <div class="col-sm-8">
                                 <select name="status" class="form-control">
                                 <#--categories-->
-                                <#list categoryStatus as dictInfo>
-                                    <option value="${dictInfo.dictCode}" <#if dictInfo.dictCode == category.status>selected="selected"</#if>>${dictInfo.info}</option>
+                                <#list infos as c>
+                                    <option value="${c.dictCode}" <#if c.dictCode == category.status>selected="selected"</#if>>${c.info}</option>
                                 </#list>
                                 </select>
                             </div>
@@ -192,7 +192,8 @@
                                          style="max-width: 200px; max-height: 150px;"></div>
                                     <div>
                         <span class="btn default btn-file"> <span
-                                class="fileinput-new">选择图片</span>  <input type="file" name="multipartFile"
+                                class="fileinput-new">选择图片</span>
+                            <input type="file" name="multipartFile"
                                                                           id="multipartFile" accept="image/*"
                                                                           onchange="changeFile(this)"/></span>
                                         <span>请选择1M以内图片</span>
@@ -229,7 +230,12 @@
                 name: {
                     required: true,
                     minlength: 2,
-                    maxlength: 10
+                    maxlength: 30
+                },
+
+                imgUrl: {
+                    date: true,
+                    required: true
                 }
             },
             messages: {},
@@ -237,31 +243,32 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "${ctx!}/mall/category/addCategory",
+                    url: "${ctx!}/admin/category/add",
                     data: $(form).serialize(),
                     success: function (msg) {
-                        if (msg.code == 0) {
-                            layer.msg(msg.message, {time: 1000}, function () {
+                        layer.msg(msg.meta.message, {time: 1000}, function () {
+                            if(msg.meta.code==1){
                                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                                 parent.layer.close(index);
-                            });
-                        }else{
-                            layer.msg(msg.message, {time: 2000}, function () {
-                            });
-                        }
+                            }
+                        });
                     }
                 });
             }
         });
     });
+</script>
 
+</body>
+
+<script>
 
     //文件选择框改变的时候就会触发此方法
     function changeFile() {
         if (document.getElementById("multipartFile").value != "") {
             var formData = new FormData(document.getElementById("frm"));//表单id
             $.ajax({
-                url: '${ctx!}/mall/category/upload',
+                url: '${ctx!}/picture/upload',
                 type: 'POST',
                 data: formData,
                 dataType: "json",
@@ -270,9 +277,9 @@
                 contentType: false,
                 processData: false,
                 success: function (msg) {
-                    if (msg.code == 0) {
-                        $('#img').attr('src', msg.message);
-                        $("#imgUrl").val(msg.message);
+                    if (msg.meta.code == 1) {
+                        $('#img').attr('src', msg.data.url);
+                        $("#imgUrl").val(msg.data.url);
                     }
 
                 }
@@ -286,9 +293,8 @@
         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
         parent.layer.close(index);
     }
-</script>
 
-</body>
+</script>
 
 
 

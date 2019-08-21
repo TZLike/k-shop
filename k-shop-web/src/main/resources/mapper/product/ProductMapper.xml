@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatech.shop.module.product.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.huatech.shop.module.product.entity.Product" >
+    <id column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="category_no" property="categoryNo" jdbcType="VARCHAR" />
+    <result column="product_image" property="productImage" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_status" property="productStatus" jdbcType="INTEGER" />
+    <result column="product_stock" property="productStock" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="product_description" property="productDescription" jdbcType="VARCHAR" />
+    <result column="product_start_time" property="productStartTime" jdbcType="TIMESTAMP" />
+    <result column="product_end_time" property="productEndTime" jdbcType="TIMESTAMP" />
+    <result column="product_sales_type" property="productSalesType" jdbcType="INTEGER" />
+    <result column="product_if_recommend" property="productIfRecommend" jdbcType="INTEGER" />
+    <result column="product_now_price" property="productNowPrice" jdbcType="DOUBLE" />
+    <result column="product_now_price_description" property="productNowPriceDescription" jdbcType="VARCHAR" />
+    <result column="product_original_price" property="productOriginalPrice" jdbcType="DOUBLE" />
+    <result column="product_sold_num" property="productSoldNum" jdbcType="INTEGER" />
+    <result column="product_summary" property="productSummary" jdbcType="VARCHAR" />
+    <result column="product_if_can_invoice" property="productIfCanInvoice" jdbcType="INTEGER" />
+    <result column="product_goods_type" property="productGoodsType" jdbcType="INTEGER" />
+    <result column="product_update_user" property="productUpdateUser" jdbcType="VARCHAR" />
+    <result column="product_create_user" property="productCreateUser" jdbcType="VARCHAR" />
+    <result column="product_commend_start_time" property="productCommendStartTime" jdbcType="TIMESTAMP" />
+    <result column="product_commend_end_time" property="productCommendEndTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+</mapper>

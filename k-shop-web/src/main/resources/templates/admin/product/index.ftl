@@ -308,7 +308,7 @@
                     shadeClose: false,
                     shade: [0.5, '#ccc'],
                     area: ['893px', '600px'],
-                    content: '${ctx!}/mall/product/detail/' + productId,
+                    content: '${ctx!}/admin/product/detail/' + productId,
                     end: function (index) {
                         $('#table_list').bootstrapTable("refresh");
                     }
@@ -322,7 +322,7 @@
                     shadeClose: true,
                     shade: false,
                     area: ['790px', '600px'],
-                    content: '${ctx!}/mall/product/add',
+                    content: '${ctx!}/admin/product/add',
                     end: function (index) {
                         $('#table_list').bootstrapTable("refresh");
                     }
@@ -333,7 +333,7 @@
                     $.ajax({
                         type: "POST",
                         dataType: "json",
-                        url: "${ctx!}/mall/product/up/" + productId + "/1",
+                        url: "${ctx!}/admin/product/up/" + productId + "/1",
                         success: function (msg) {
                             layer.msg(msg.message, {time: 2000}, function () {
                                 $('#table_list').bootstrapTable("refresh");
@@ -349,7 +349,7 @@
                     $.ajax({
                         type: "POST",
                         dataType: "json",
-                        url: "${ctx!}/mall/product/del/" + productId,
+                        url: "${ctx!}/admin/product/del/" + productId,
                         success: function (msg) {
                             layer.msg(msg.message, {time: 2000}, function () {
                                 $('#table_list').bootstrapTable("refresh");
@@ -365,7 +365,7 @@
                     $.ajax({
                         type: "POST",
                         dataType: "json",
-                        url: "${ctx!}/mall/product/down/" + productId + "/2",
+                        url: "${ctx!}/admin/product/down/" + productId + "/2",
                         success: function (msg) {
                             layer.msg(msg.message, {time: 2000}, function () {
                                 $('#table_list').bootstrapTable("refresh");

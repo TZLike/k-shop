@@ -31,9 +31,8 @@
                             <label class="col-sm-4 control-label">状态:</label>
                             <div class="col-sm-8">
                                 <select id="status" name="status" class="form-control">
-                                    <option value="请选择..">请选择..</option>
-                                    <#list categoryStatus as dictInfo>
-                                        <option value="${dictInfo.dictCode}">${dictInfo.info}</option>
+                                    <#list infos as c>
+                                        <option value="${c.dictCode}">${c.info}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -123,9 +122,6 @@
                     title: "类目名称",
                     field: "name"
                 }, {
-                    title: "展位图片",
-                    field: "imgUrl"
-                }, {
                     title: "状态",
                     field: "status"
                 }, {
@@ -143,9 +139,9 @@
                         var operateHtml = "";
                         operateHtml = operateHtml + '<@shiro.hasPermission name="admin:category:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;编辑</button> &nbsp;</@shiro.hasPermission>';
 
-                        if (row.status == 2) {
+                        if (row.sInt == 0) {
                             operateHtml = operateHtml + '<@shiro.hasPermission name="admin:category:up"><button class="btn btn-success btn-xs" type="button" onclick="onSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;上架</button> &nbsp;</@shiro.hasPermission>';
-                        } else if (row.status == 1) {
+                        } else if (row.sInt == 1) {
                             operateHtml = operateHtml + '<@shiro.hasPermission name="admin:category:down"><button class="btn btn-info btn-xs" type="button" onclick="offSale(\'' + row.id + '\')"><i class="fa fa-remove"></i>&nbsp;下线</button> &nbsp;</@shiro.hasPermission>';
 
                         }
@@ -163,8 +159,8 @@
                 type: 2,
                 title: '类目添加',
                 shadeClose: true,
-                shade: false,
-                area: ['600px', '400px'],
+                shade: [0.5, '#ccc'],
+                area: ['700px', '600px'],
                 content: '${ctx!}/admin/category/add',
                 end: function (index) {
                     $('#table_list').bootstrapTable("refresh");
