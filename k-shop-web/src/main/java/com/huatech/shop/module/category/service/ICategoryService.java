@@ -6,6 +6,8 @@ import com.huatech.shop.common.dto.CategoryDto;
 import com.huatech.shop.module.category.entity.Category;
 import com.huatech.shop.module.category.param.CategoryParam;
 
+import java.util.List;
+
 /**
  * @ClassName ICategoryService
  * @Description TODO
@@ -20,4 +22,6 @@ public interface ICategoryService extends IBaseService<Category, Integer> {
     void saveOrUpdate(Category category);
 
     void upOrDownCategory(Integer id, String s);
+
+    List<CategoryDto> findCategoryList();
 }

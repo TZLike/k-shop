@@ -78,4 +78,10 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, Integer> impl
         }
 
     }
+
+    @Override
+    public List<CategoryDto> findCategoryList() {
+
+        return categoryMapper.findCategoryList();
+    }
 }

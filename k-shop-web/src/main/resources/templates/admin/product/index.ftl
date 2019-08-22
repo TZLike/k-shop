@@ -42,7 +42,7 @@
                                 <div class="col-sm-8">
                                     <select id="categoryNo" name="categoryNo" class="form-control">
                                         <option value="">请选择..</option>
-                                    <#list categoryDtos as category>
+                                    <#list categoryList as category>
                                         <option value="${category.categoryNo}">${category.name}</option>
                                     </#list>
                                     </select>
@@ -136,7 +136,7 @@
                         <div id="toolbar-btn" class="btn-group pull-left" style="padding-bottom:10px;">
                             <button id="btn_add" onclick="add()" type="button" class="btn btn-info btn-space">
                                 <span class="fa fa-search" aria-hidden="true" class="btn-icon-space"></span>
-                                添加商品
+                                添加
                             </button>
                             <br/>
                         </div>
@@ -286,14 +286,14 @@
                             title: "操作",
                             field: "empty",
                             formatter: function (value, row, index) {
-                                var operateHtml = '<@shiro.hasPermission name="system:user:edit"><button class="btn btn-primary btn-xs" type="button" onclick="detail(\''+ row.productId+'\')"><i class="fa fa-edit"></i>&nbsp;编辑</button> &nbsp;</@shiro.hasPermission>';
+                                var operateHtml = '<@shiro.hasPermission name="admin:product:edit"><button class="btn btn-primary btn-xs" type="button" onclick="detail(\''+ row.productId+'\')"><i class="fa fa-edit"></i>&nbsp;编辑</button> &nbsp;</@shiro.hasPermission>';
                                 if (row.productStatus == 3 || row.productStatus == 2) {
-                                    operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-success btn-xs" type="button" onclick="onSale(\''+ row.productId+'\')"><i class="fa fa-remove"></i>&nbsp;上架</button> &nbsp;</@shiro.hasPermission>';
+                                    operateHtml = operateHtml + '<@shiro.hasPermission name="admin:product:up"><button class="btn btn-success btn-xs" type="button" onclick="onSale(\''+ row.productId+'\')"><i class="fa fa-remove"></i>&nbsp;上架</button> &nbsp;</@shiro.hasPermission>';
                                 } else if (row.productStatus == 1) {
-                                    operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-info btn-xs" type="button" onclick="offSale(\''+ row.productId+'\')"><i class="fa fa-remove"></i>&nbsp;下架</button> &nbsp;</@shiro.hasPermission>';
+                                    operateHtml = operateHtml + '<@shiro.hasPermission name="admin:product:down"><button class="btn btn-info btn-xs" type="button" onclick="offSale(\''+ row.productId+'\')"><i class="fa fa-remove"></i>&nbsp;下架</button> &nbsp;</@shiro.hasPermission>';
 
                                 }
-                                operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+ row.productId+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
+                                operateHtml = operateHtml + '<@shiro.hasPermission name="admin:product:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+ row.productId+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
 
                                 return operateHtml;
                             }

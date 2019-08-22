@@ -18,6 +18,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @Author leek
@@ -43,13 +44,13 @@ public class ProductController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
-        modelMapArrbuties(modelMap);
+        infos(modelMap);
         return "/admin/product/index";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String productAdd(ModelMap modelMap) {
-        modelMapArrbuties(modelMap);
+        infos(modelMap);
         return "/admin/product/form";
     }
 
@@ -85,29 +86,29 @@ public class ProductController {
     public String detail(@PathVariable("productId") String productId, ModelMap modelMap) {
         Product product = productService.find(productId);
         modelMap.put("product", product);
-        modelMapArrbuties(modelMap);
+        infos(modelMap);
         return "/admin/product/edit";
     }
 
 
-    public void modelMapArrbuties(ModelMap modelMap) {
+    public void infos(ModelMap modelMap) {
         //商品上架状态
-//        List<DictInfo> productStatus = sysParamService.listParam(Config.Product.PRODUCT_STATUS);
-//        modelMap.put("productStatus", productStatus);
-//        //商品销售平台
-//        List<DictInfo> productSales = sysParamService.listParam(Config.Product.PRODUCT_SALES_TYPE);
-//        modelMap.put("productSales", productSales);
-//        //是否为推荐商品
-//        List<DictInfo> productIfRecommends = sysParamService.listParam(Config.Product.PRODUCT_IF_RECOMMEND);
-//        modelMap.put("productIfRecommends", productIfRecommends);
-//        //商品可否开发票
-//        List<DictInfo> productIfCanInvoices = sysParamService.listParam(Config.Product.PRODUCT_IF_CAN_INVOICE);
-//        modelMap.put("productIfCanInvoices", productIfCanInvoices);
-//        //是否为实物商品
-//        List<DictInfo> productGoodsTypes = sysParamService.listParam(Config.Product.PRODUCT_GOODS_TYPE);
-//        modelMap.put("productGoodsTypes", productGoodsTypes);
-//        List<CategoryDto> categoryDtos = categoryService.findCategoryLitsByStatus(CategoryStatusEnumType.CATEGORY_STATUS_DEFAULT.getCode() + "");
-//        modelMap.put("categoryDtos", categoryDtos);
+        List<DictInfo> productStatus = sysParamService.listParam(ShopConstants.Product.PRODUCT_UP_AND_DOWN);
+        modelMap.put("productStatus", productStatus);
+        //商品销售平台
+        List<DictInfo> productSales = sysParamService.listParam(ShopConstants.Product.PRODUCT_SALE_PLAT);
+        modelMap.put("productSales", productSales);
+        //是否为推荐商品
+        List<DictInfo> productIfRecommends = sysParamService.listParam(ShopConstants.Product.PRODUCT_IS_COMMEND);
+        modelMap.put("productIfRecommends", productIfRecommends);
+        //商品可否开发票
+        List<DictInfo> productIfCanInvoices = sysParamService.listParam(ShopConstants.Product.PRODUCT_IS_CAN_TICKET);
+        modelMap.put("productIfCanInvoices", productIfCanInvoices);
+        //是否为实物商品
+        List<DictInfo> productGoodsTypes = sysParamService.listParam(ShopConstants.Product.PRODUCT_TYPE);
+        modelMap.put("productGoodsTypes", productGoodsTypes);
+        List<CategoryDto> categoryList = categoryService.findCategoryList();
+        modelMap.put("categoryList", categoryList);
 
     }
 

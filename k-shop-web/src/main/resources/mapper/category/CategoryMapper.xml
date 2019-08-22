@@ -30,4 +30,11 @@
         </where>
     </select>
 
+    <!--    查询所有已经上线商品类目-->
+    <select id="findCategoryList" resultType="com.huatech.shop.common.dto.CategoryDto">
+      select  c.id,c.category_no categoryNo,c.img_url imgUrl,c.name
+      from t_category c
+      where c.status = 1
+    </select>
+
 </mapper>

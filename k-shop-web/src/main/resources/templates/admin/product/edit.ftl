@@ -177,7 +177,7 @@
                                 <label class="col-sm-4 control-label">所属类目:</label>
                                 <div class="col-sm-8">
                                     <select id="categoryNo" name="categoryNo" class="form-control" >
-                                    <#list categoryDtos as category>
+                                    <#list categoryList as category>
                                         <option value="${category.categoryNo}" <#if category.categoryNo == product.categoryNo>selected="selected"</#if>>${category.name} </option>
                                     </#list>
                                     </select>

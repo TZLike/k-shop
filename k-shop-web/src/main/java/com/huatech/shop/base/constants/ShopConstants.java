@@ -53,8 +53,26 @@ public class ShopConstants extends ApiConstants {
     /**
      * 商品类目相关
      */
-    public static  class Category{
-        public  static  final  String CATEGORY_STATUS = "13000";
+    public static class Category {
+        public static final String CATEGORY_STATUS = "13000";
+    }
+
+    /**
+     * 商品相关
+     */
+    public static class Product {
+
+        //商品上架状态
+        public static final String PRODUCT_UP_AND_DOWN = "14000";
+        //商品销售平台
+        public static final String PRODUCT_SALE_PLAT = "15000";
+        //商品是否为推荐商品
+        public static final String PRODUCT_IS_COMMEND = "16000";
+        //商品是否可以开具发票
+        public static final String PRODUCT_IS_CAN_TICKET = "17000";
+        //商品类型
+        public static final String PRODUCT_TYPE = "18000";
+
     }
 
 

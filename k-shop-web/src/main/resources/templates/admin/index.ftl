@@ -81,19 +81,19 @@
                     <ul class="nav nav-second-level">
                                             <@shiro.hasPermission name="admin:banner:index">
                         <li>
-                            <a class="J_menuItem" href="${ctx!}/admin/banner/index">轮播图配置</a>
+                            <a class="J_menuItem" href="${ctx!}/admin/banner/index">轮播图管理</a>
                         </li>
                                             </@shiro.hasPermission>
 
                                             <@shiro.hasPermission name="admin:category:index">
                         <li>
-                            <a class="J_menuItem" href="${ctx!}/admin/category/index">商品分类配置</a>
+                            <a class="J_menuItem" href="${ctx!}/admin/category/index">商品分类管理</a>
                         </li>
                                             </@shiro.hasPermission>
 
 <#--                                            <@shiro.hasPermission name="admin:product:index">-->
                         <li>
-                            <a class="J_menuItem" href="${ctx!}/admin/product/index">商品信息配置</a>
+                            <a class="J_menuItem" href="${ctx!}/admin/product/index">商品管理</a>
                         </li>
 <#--                                            </@shiro.hasPermission>-->
 
