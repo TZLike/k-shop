@@ -1,1 +1,47 @@
+#配置服务器端口
+server:
+  port: 8400
+spring:
+  application:
+    name: k-shop-user-service
+    #数据库druid相关配置
+  druid:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/k-shop?characterEncoding=utf-8
+    username: root
+    password: 123456
+    maxActive: 30 #最大连接数
+    minIdle: 5    #最小连接数
+    maxWait: 10000  #获取连接的最大等待时间
+    validationQuery: select 'x'   #解决mysql8小时的问题
+    timeBetweenEvicationRunsMills: 600000  #空闲连接检查时间间隔
+    minEvictableIdleTimeMills: 300000    #空闲连接最小空闲时间
+  redis:
+    url: 172.20.10.3
+    timeout: 5000
+    password: redis-pass
+    database: 0
+    jedis:
+      pool:
+        max-active: 8
+        min-idle: 1
+    port: 6379
+  #mybatis的配置&&通用Mapper配置
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  #mybatis.config-location=
+  type-aliases-package: com.huatech.shop.module.*.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+#配置eureka
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/
+#配置用户redis保存前缀
+redis:
+  token:
+    prefix: LOGIN:USER-
